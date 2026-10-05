@@ -42,6 +42,8 @@ fn main() {
         .max_by_key(|&(_, &temp)| temp)
         .map(|(idx, _)| idx)
         .unwrap_or(0)
-      }
-
-
+     }
+     
+     fn count_above(log: &Vec<i32>, threshold: i32) -> usize {
+    log.iter().filter(|&&temp| temp > threshold).count()
+}
