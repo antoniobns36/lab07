@@ -32,9 +32,9 @@ fn main() {
         });
     }
 
-     println!("\n--- Updated Highs ---");
-    for (i, &temp) in highs.iter().enumerate() {
-        println!("{}: {}", DAYS[i], temp);
+    println!("\n--- Updated Highs ---");
+    for reading in &log  {
+        println!("{}: {}", reading.day, reading.high);
     }
 
     let avg = average_temp(&highs);
