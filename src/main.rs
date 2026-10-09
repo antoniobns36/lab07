@@ -14,12 +14,8 @@ struct Summary {
 }
 
 fn main() {
-    let mut highs: Vec<i32> = vec![72, 68, 75, 81, 79];
+    let mut temp_ ighs: Vec<i32> = vec![72, 68, 75, 81, 79];
 
-    println!("--- Initial Highs ---");
-    for (i, &temp) in highs.iter().enumerate() {
-        println!("{}: {}", DAYS[i], temp);
-    }
     let mut rng = rand::rng();
     highs.push(rng.random_range(60..=100));
     highs.push(rng.random_range(60..=100));
@@ -37,14 +33,12 @@ fn main() {
         println!("{}: {}", reading.day, reading.high);
     }
 
-    let avg = average_temp(&highs);
-    let hot_idx = hottest_day(&highs);
-    let count = count_above(&highs, 75);
+    let summary = summarize(&log, 75);
 
-    println!("\n--- Analysis ---");
-    println!("Average Temperature: {:.2}", avg);
-    println!("Hottest Day: {}", DAYS[hot_idx]);
-    println!("Days Above 75: {}", count);
+    println!("\n--- Analysis Summary ---");
+    println!("Average Temperature: {:.2}", summary.average);
+    println!("Hottest Day: {}", summary.hottest_day);
+    println!("Days Above 75: {}", summary.days_above);
 }
 
     fn average_temp(log: &Vec<Reading>) -> f64 {
