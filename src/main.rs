@@ -47,22 +47,22 @@ fn main() {
     println!("Days Above 75: {}", count);
 }
 
-    fn average_temp(log: &Vec<i32>) -> f64 {
+    fn average_temp(log: &Vec<Reading>) -> f64 {
 	if log.is_empty() {
 	    return 0.0;
 	}
-	let sum: i32 = log.iter().sum();
+	let sum: i32 = log.iter().map(|r| r.high).sum();
 	sum as f64 / log.len() as f64
      }
 
-     fn hottest_day(log: &Vec<i32>) -> usize {
+     fn hottest_day(log: &Vec<Reading>) -> usize {
     log.iter()
         .enumerate()
-        .max_by_key(|&(_, &temp)| temp)
+        .max_by_key(|&(_, r)| r.high)
         .map(|(idx, _)| idx)
         .unwrap_or(0)
      }
      
-     fn count_above(log: &Vec<i32>, threshold: i32) -> usize {
-    log.iter().filter(|&&temp| temp > threshold).count()
+     fn count_above(log: &Vec<Reading>, threshold: i32) -> usize {
+    log.iter().filter(|r| r.high  > threshold).count()
 }
